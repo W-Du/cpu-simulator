@@ -16,15 +16,16 @@ class Memory:
 
     def write(self, output=True):
         if output:
-            print(f' -{self.name} write: ', end='')
+            print(f' -{self.name} write ', end='')
         self.exec_time += self.access_time
 
 
 
 class MainMemory(Memory):
-    def __init__(self):
+    def __init__(self, blockNum):
         Memory.__init__(self, 'Main memory', 30)
-        self.data = [''] * 16
+        self.data = [''] * blockNum
+        self.blockNum = blockNum
 
     def read(self, address):
         data = self.data[address]
@@ -34,5 +35,5 @@ class MainMemory(Memory):
     def write(self, address, data):
         self.data[address] = data
         super().write()
-    
+        print(data, end = '\n')
 
